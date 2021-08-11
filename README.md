@@ -9,3 +9,4 @@ Current UWC implementation runs the container that needs to access the devices a
 ## Goal
 
 Create a process to identify devices and change ownership to podman
+
