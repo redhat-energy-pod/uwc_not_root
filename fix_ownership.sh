@@ -15,13 +15,21 @@ for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
 done
 
 # What is the podman user?
-echo "What user do you run podman as?"
+printf "What user do you run podman as? \n"
 read podman_user
 
 #What device should we change to the podman user
-echo "Which device listed above would you like to change to the podman user?"
+printf "Which device listed above would you like to change to the podman user? \n"
 read device
 
+# Get current device ownership in case we need to change it back
+before=`ls -ltrha ${device}`
+printf "Original device ownership: \n ${before} \n"
+
 #chown the device to the podman user
-echo "you will be prompted for your sudo password"
+printf "This will execute chown ${podman_user} ${device} exit now if you do not wish to do this.\n You may be prompted for your sudo password \n"
 sudo chown ${podman_user} ${device} 
+
+# Show output post change
+printf "New ownership of device \n"
+ls -ltrha ${device}
