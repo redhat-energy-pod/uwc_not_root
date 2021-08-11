@@ -24,10 +24,12 @@ read device
 
 # Get current device ownership in case we need to change it back
 before=`ls -ltrha ${device}`
-printf "Original device ownership: \n ${before} \n"
+printf "Original device ownership: \n"
+printf "${before} \n"
 
 #chown the device to the podman user
-printf "This will execute chown ${podman_user} ${device} exit now if you do not wish to do this.\n You may be prompted for your sudo password \n"
+printf "This will execute chown ${podman_user} ${device} exit now if you do not wish to do this.\n"
+printf "You may be prompted for your sudo password \n"
 sudo chown ${podman_user} ${device} 
 
 # Show output post change
